@@ -710,6 +710,7 @@ button:disabled {
     }
 
     .sewn-label {
+        display:none;
         position:absolute;
         right:27px;
         top:75px;
