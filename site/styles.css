@@ -101,3 +101,23 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding-block
   .scope-grid { grid-template-columns: 1fr; gap: 24px; }
   footer { flex-direction: column; }
 }
+
+.build-log { display: grid; grid-template-columns: .85fr 1.25fr; gap: 48px; padding-block: 64px; border-top: 1px solid var(--line); margin-top: 56px; }
+.build-copy h2 { font: 400 clamp(48px, 5vw, 70px)/1 Impact, 'Arial Narrow', sans-serif; margin-block: 18px 30px; }
+.build-copy h2 span { color: var(--accent); }
+.built-lines { list-style: none; padding: 0; margin: 0 0 30px; }
+.built-lines li { display: grid; grid-template-columns: 28px 1fr; gap: 16px; padding-block: 18px; border-top: 1px solid var(--line); }
+.built-lines li > span { font: 12px/1.6 'Courier New', monospace; color: var(--accent); }
+.built-lines h3 { font-size: 16px; }
+.built-lines p { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.backend-source { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 18px; min-height: 48px; background: var(--accent); color: var(--bg); text-decoration: none; font-size: 14px; }
+.backend-source:hover { background: var(--ink); }
+.preview-notice { font-size: 12px; color: var(--muted); margin-top: 22px; }
+.build-evidence { align-self: center; min-width: 0; }
+.build-evidence figure { margin: 0; }
+.build-evidence img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.build-evidence figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 14px; color: var(--muted); font: 10px/1.6 'Courier New', monospace; }
+.capture-links { display: flex; flex-wrap: wrap; gap: 14px 24px; margin-top: 20px; border-top: 1px solid var(--line); padding-top: 10px; }
+.capture-links a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: 12px; }
+@media (max-width: 900px) { .build-log { gap: 30px; grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .build-log { padding-block: 35px; margin-top: 35px; } .build-copy h2 { font-size: 56px; } .build-evidence figcaption { flex-wrap: wrap; gap: 4px; } }
