@@ -2,7 +2,7 @@
 
 propuesta de un sistema para lavanderías: identificar cada pieza o bulto, conservar instrucciones y verificar qué se entrega a cada cliente.
 
-**estado:** documentación y demo interactiva. todavía no existe un backend operativo, base de datos ni registro de clientes reales.
+**estado:** demo interactiva y base de laravel 13. el backend está en construcción; todavía no recibe órdenes ni clientes reales.
 
 [ver la demo](https://kisnner26.github.io/trama-lavanderia/) · [alcance inicial](docs/producto.md) · [flujo operativo](docs/operacion.md) · [modelo de datos](docs/datos.md) · [arquitectura](docs/arquitectura.md) · [plan](docs/plan.md)
 
@@ -30,6 +30,16 @@ npm test
 
 ## desarrollo
 
-el sistema operativo se plantea con laravel, mysql y una interfaz web adaptable. estas decisiones y sus criterios de aceptación están en la documentación; este repositorio todavía no contiene una aplicación laravel.
+el backend vive en `backend/` y requiere php 8.3–8.5, composer y mysql. la demo de github pages es independiente: pages no ejecuta php.
+
+```sh
+cd backend
+composer run setup
+# configurar una base vacía y sus credenciales en .env
+php artisan migrate
+php artisan serve
+```
+
+`composer test` verifica el backend. `/up` comprueba que el proceso responde; no certifica la disponibilidad de la base de datos. `.env`, dependencias y bases locales no se publican.
 
 las capturas provienen de la demo ejecutada en un navegador, en escritorio y móvil. [captura móvil](docs/img/mobile.png).
