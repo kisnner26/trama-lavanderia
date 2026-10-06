@@ -931,3 +931,16 @@ button:disabled {
     .desk-heading { display: grid; grid-template-columns: 1fr; gap: 14px; }
     .outline-stamp { justify-self: start; }
 }
+
+.error-masthead { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 26px 5%; border-bottom: 1px solid var(--line); }
+.error-masthead .eyebrow { margin: 0; }
+.error-sheet { display: grid; grid-template-columns: 1fr 1.2fr; gap: 65px; width: min(1000px, 90%); margin: 80px auto; align-items: center; }
+.error-number { font: clamp(130px, 18vw, 260px)/1 var(--display); color: #7b836d; margin: 0; }
+.error-sheet h1 { font: clamp(42px, 4vw, 65px)/1.04 var(--display); margin: 0 0 25px; }
+.error-sheet .muted { max-width: 420px; margin: 0 0 30px; }
+@media (max-width: 700px) {
+    .error-masthead { padding: 20px 22px; }
+    .error-masthead .eyebrow { display: none; }
+    .error-sheet { grid-template-columns: 1fr; gap: 25px; margin: 40px auto; }
+    .error-number { font-size: 110px; }
+}

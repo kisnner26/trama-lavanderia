@@ -29,7 +29,7 @@ class WorkspaceTest extends TestCase
         $membership = Membership::factory()->create();
         $otherBranch = Branch::factory()->create();
 
-        $this->actingAs($membership->user)->get(route('workspace', ['branch' => $otherBranch->id]))->assertNotFound();
+        $this->actingAs($membership->user)->get(route('workspace', ['branch' => $otherBranch->id]))->assertNotFound()->assertSee('no encontramos esta página.');
     }
 
     public function test_a_sibling_branch_also_requires_an_explicit_assignment(): void

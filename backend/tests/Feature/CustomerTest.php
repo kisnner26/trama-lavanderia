@@ -34,7 +34,7 @@ class CustomerTest extends TestCase
     {
         $membership = Membership::factory()->create(['role' => Role::Operator]);
 
-        $this->actingAs($membership->user)->get(route('customers.index', ['branch' => $membership->branch_id]))->assertForbidden();
+        $this->actingAs($membership->user)->get(route('customers.index', ['branch' => $membership->branch_id]))->assertForbidden()->assertSee('esa tarea requiere otro permiso.');
     }
 
     public function test_operator_cannot_create_a_customer(): void
