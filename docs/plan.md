@@ -50,7 +50,7 @@ cada hito termina con una función revisable y sus pruebas relevantes. los commi
 
 ## entregado en este repositorio
 
-documentación del producto, demo interactiva, reglas simples del ejemplo y pruebas de entrega parcial. el sitio y sus capturas sirven para discutir el piloto; los hitos del backend siguen pendientes.
+documentación del producto, demo interactiva, reglas simples del ejemplo y pruebas de entrega parcial. el sitio y sus capturas sirven para discutir el piloto. la base laravel, mysql, negocios, sucursales, roles y acceso por sesión ya están implementados; las asignaciones se comprueban en cada petición. el alta inicial se hace mediante un comando local, sin contraseña predeterminada. falta administración visual del equipo y recuperación de acceso. los hitos de órdenes, operación, pagos y entrega siguen pendientes.
 
 ## preguntas abiertas
 

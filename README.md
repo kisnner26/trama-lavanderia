@@ -2,7 +2,7 @@
 
 propuesta de un sistema para lavanderías: identificar cada pieza o bulto, conservar instrucciones y verificar qué se entrega a cada cliente.
 
-**estado:** demo interactiva y base de laravel 13. el backend está en construcción; todavía no recibe órdenes ni clientes reales.
+**estado:** demo interactiva y backend laravel 13 con acceso por negocio, sucursal y rol. todavía no recibe órdenes ni clientes reales.
 
 [ver la demo](https://kisnner26.github.io/trama-lavanderia/) · [alcance inicial](docs/producto.md) · [flujo operativo](docs/operacion.md) · [modelo de datos](docs/datos.md) · [arquitectura](docs/arquitectura.md) · [plan](docs/plan.md)
 
@@ -37,9 +37,17 @@ cd backend
 composer run setup
 # configurar una base vacía y sus credenciales en .env
 php artisan migrate
+php artisan trama:provision responsable@example.test --business="mi lavandería" --branch="central" --name="responsable"
+# la contraseña se solicita de forma oculta; no hay una cuenta predeterminada
 php artisan serve
 ```
 
 `composer test` verifica el backend. `/up` comprueba que el proceso responde; no certifica la disponibilidad de la base de datos. `.env`, dependencias y bases locales no se publican.
 
 las capturas provienen de la demo ejecutada en un navegador, en escritorio y móvil. [captura móvil](docs/img/mobile.png).
+
+## acceso del equipo
+
+la cuenta inicial se crea con `trama:provision`. cada empleado necesita una asignación explícita a su sucursal; conocer otro identificador no concede acceso. el formulario protege la sesión con csrf y limita intentos fallidos. el alta pública, la gestión visual del equipo y la recuperación de contraseñas siguen pendientes.
+
+![captura real del acceso al backend](docs/img/backend-access.png)
