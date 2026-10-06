@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\PasswordByteLimit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -20,7 +21,7 @@ class LoginRequest extends FormRequest
 
     public function rules(): array
     {
-        return ['email' => ['required', 'email', 'max:254'], 'password' => ['required', 'string', 'max:128']];
+        return ['email' => ['required', 'email', 'max:254'], 'password' => ['required', 'string', new PasswordByteLimit]];
     }
 
     public function messages(): array
@@ -31,7 +32,6 @@ class LoginRequest extends FormRequest
             'email.max' => 'el correo es demasiado largo.',
             'password.required' => 'escribe tu contraseña.',
             'password.string' => 'escribe una contraseña válida.',
-            'password.max' => 'la contraseña es demasiado larga.',
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Models\Membership;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ProvisionBusinessTest extends TestCase
@@ -35,6 +36,27 @@ class ProvisionBusinessTest extends TestCase
 
         $this->assertDatabaseCount('businesses', 0);
         $this->assertDatabaseCount('branches', 0);
+        $this->assertDatabaseCount('users', 0);
+        $this->assertDatabaseCount('memberships', 0);
+    }
+
+    public static function unsupportedPasswords(): array
+    {
+        return [
+            'unicode fuera del límite' => [str_repeat('á', 37)],
+            'carácter nulo' => ["test-password\0suffix"],
+        ];
+    }
+
+    #[DataProvider('unsupportedPasswords')]
+    public function test_unsupported_passwords_leave_no_business_or_owner(string $password): void
+    {
+        $this->artisan('trama:provision', [
+            'email' => 'owner@example.test', '--business' => 'negocio de prueba',
+            '--branch' => 'central', '--name' => 'responsable',
+        ])->expectsQuestion('contraseña del propietario (mínimo 12 caracteres)', $password)->assertFailed();
+
+        $this->assertDatabaseCount('businesses', 0);
         $this->assertDatabaseCount('users', 0);
         $this->assertDatabaseCount('memberships', 0);
     }

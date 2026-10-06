@@ -24,7 +24,7 @@
             </div>
             <div class="field">
                 <label for="password">contraseña</label>
-                <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="128" @error('password') aria-invalid="true" aria-describedby="password-error" @enderror>
+                <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="72" @error('password') aria-invalid="true" aria-describedby="password-error" @enderror>
                 @error('password')<p id="password-error" class="field-error" role="alert">{{ $message }}</p>@enderror
             </div>
             <button class="button primary" type="submit">entrar al mostrador <span aria-hidden="true">→</span></button>

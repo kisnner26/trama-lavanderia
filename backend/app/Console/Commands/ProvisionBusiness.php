@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Models\Business;
 use App\Models\Membership;
 use App\Models\User;
+use App\Rules\PasswordByteLimit;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -43,7 +44,7 @@ class ProvisionBusiness extends Command
             'name' => ['required', 'string', 'max:255'],
             'currency' => ['required', 'in:NIO,USD'],
             'timezone' => ['required', 'timezone:all', 'max:64'],
-            'password' => ['required', 'string', Password::min(12), 'max:128'],
+            'password' => ['required', 'string', Password::min(12), new PasswordByteLimit],
         ]);
         if ($validator->fails()) {
             $this->error('datos inválidos: '.implode(', ', $validator->errors()->keys()).'. no se creó ningún acceso.');
