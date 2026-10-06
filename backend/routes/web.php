@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\WorkspaceController;
@@ -15,6 +16,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [WorkspaceController::class, 'home'])->name('home');
     Route::post('/salir', [SessionController::class, 'destroy'])->name('logout');
     Route::middleware(EnsureBranchAccess::class)->prefix('/sucursales/{branch}')->whereNumber('branch')->group(function () {
+        Route::get('/ventas', [SaleController::class, 'index'])->name('sales.index');
+        Route::get('/ventas/nueva', [SaleController::class, 'create'])->name('sales.create');
+        Route::post('/ventas', [SaleController::class, 'store'])->name('sales.store');
+        Route::get('/ventas/{sale}', [SaleController::class, 'show'])->whereNumber('sale')->name('sales.show');
+        Route::post('/ventas/{sale}/pagos', [SaleController::class, 'payment'])->whereNumber('sale')->name('sales.payment');
+        Route::post('/ventas/{sale}/preparar-recibo', [SaleController::class, 'prepareReceipt'])->whereNumber('sale')->name('sales.prepare-receipt');
+        Route::get('/ventas/{sale}/recibo', [SaleController::class, 'receipt'])->whereNumber('sale')->name('sales.receipt');
         Route::get('/servicios', [ServiceController::class, 'index'])->name('services.index');
         Route::post('/servicios', [ServiceController::class, 'store'])->name('services.store');
         Route::get('/clientes', [CustomerController::class, 'index'])->name('customers.index');

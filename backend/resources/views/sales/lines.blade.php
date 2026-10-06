@@ -1,0 +1,1 @@
+<div class="sale-items">@foreach ($sale->lines as $line)<article><strong>{{ $line->service_name }}</strong><p>{{ $line->quantity() }} {{ $line->billing_unit === 'kg' ? 'kg' : 'piezas' }} × {{ $sale::money($line->price_minor) }}</p><span>{{ $sale::money($line->total_minor) }} {{ $sale->currency }}</span></article>@endforeach</div>
