@@ -24,7 +24,7 @@ class SessionController extends Controller
         if (RateLimiter::tooManyAttempts($key, 5)) {
             throw ValidationException::withMessages(['email' => 'demasiados intentos. vuelve a probar en un minuto.']);
         }
-        if (! Auth::attemptWhen($request->safe()->only(['email', 'password']), fn (User $user) => $user->memberships()->exists())) {
+        if (! Auth::attemptWhen($request->safe()->only(['email', 'password']), fn (User $user): bool => $user->memberships()->exists())) {
             RateLimiter::hit($key, 60);
             throw ValidationException::withMessages(['email' => 'no pudimos abrir tu sesión. revisa tus credenciales.']);
         }

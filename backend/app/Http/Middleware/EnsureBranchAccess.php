@@ -16,6 +16,9 @@ class EnsureBranchAccess
             ->firstOrFail();
         $request->attributes->set('membership', $membership);
 
-        return $next($request);
+        $response = $next($request);
+        $response->headers->set('Cache-Control', 'no-store, private');
+
+        return $response;
     }
 }

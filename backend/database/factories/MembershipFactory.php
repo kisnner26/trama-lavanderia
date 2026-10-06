@@ -13,7 +13,7 @@ class MembershipFactory extends Factory
     {
         return [
             'branch_id' => Branch::factory(),
-            'business_id' => fn (array $attributes) => Branch::findOrFail($attributes['branch_id'])->business_id,
+            'business_id' => fn (array $attributes): int => Branch::findOrFail($attributes['branch_id'])->business_id,
             'user_id' => User::factory(),
             'role' => Role::Reception,
         ];

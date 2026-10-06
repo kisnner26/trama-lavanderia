@@ -912,3 +912,7 @@ button:disabled {
 
 }
 
+
+.record-row strong { overflow-wrap: anywhere; }
+.text-button, .branch-nav a { min-height: 44px; }
+.desk-tabs a { padding-top: 13px; padding-bottom: 13px; }

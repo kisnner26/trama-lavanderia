@@ -18,9 +18,6 @@ class WorkspaceController extends Controller
 
     public function show(Request $request): View
     {
-        return view('workspace', [
-            'membership' => $request->attributes->get('membership'),
-            'memberships' => $request->user()->memberships()->with('branch.business')->orderBy('branch_id')->get(),
-        ]);
+        return $this->workspaceView($request, 'workspace');
     }
 }
