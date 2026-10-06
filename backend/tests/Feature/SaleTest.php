@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\Role;
+use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\Membership;
 use App\Models\Sale;
@@ -124,6 +125,35 @@ class SaleTest extends TestCase
         $this->post(route('sales.prepare-receipt', $route))->assertRedirectToRoute('sales.receipt', $route);
         $this->assertDatabaseCount('sale_events', 2);
         $this->get(route('sales.index', ['branch' => $membership->branch_id, 'q' => $sale->number()]))->assertOk()->assertSee($sale->number());
+    }
+
+    public function test_same_business_sibling_branch_cannot_access_or_pay_a_sale(): void
+    {
+        [$membership, $customer, $service, $payload] = $this->fixture();
+        $sale = $this->issue($membership, $payload);
+        $branch = Branch::factory()->create(['business_id' => $membership->business_id]);
+        Membership::factory()->create(['business_id' => $membership->business_id, 'branch_id' => $branch->id, 'user_id' => $membership->user_id, 'role' => Role::Owner]);
+        $route = ['branch' => $branch->id, 'sale' => $sale->id];
+        $this->get(route('sales.show', $route))->assertNotFound();
+        $this->get(route('sales.receipt', $route))->assertNotFound();
+        $this->post(route('sales.prepare-receipt', $route))->assertNotFound();
+        $this->post(route('sales.payment', $route), ['request_key' => (string) Str::uuid(), 'amount' => '1', 'method' => 'cash'])->assertNotFound();
+        $this->get(route('sales.index', ['branch' => $branch->id]))->assertOk()->assertDontSee($sale->number());
+        $this->assertDatabaseCount('payments', 0);
+        $this->assertDatabaseCount('sale_events', 1);
+    }
+
+    public function test_malformed_lines_return_validation_errors_and_a_usable_form(): void
+    {
+        [$membership, $customer, $service, $payload] = $this->fixture();
+        $payload['lines'] = ['invalid'];
+        $payload['customer_id'] = ['invalid'];
+        $payload['notes'] = ['invalid'];
+        $payload['request_key'] = ['invalid'];
+        $url = route('sales.create', ['branch' => $membership->branch_id]);
+        $this->from($url)->post(route('sales.store', ['branch' => $membership->branch_id]), $payload)->assertSessionHasErrors('lines.0');
+        $this->get($url)->assertOk()->assertSee('emitir comprobante');
+        $this->assertDatabaseCount('sales', 0);
     }
 
     public function test_operator_and_other_branches_cannot_access_sale_documents(): void
