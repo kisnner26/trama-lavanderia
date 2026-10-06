@@ -2,7 +2,7 @@
 
 propuesta de un sistema para lavanderías: identificar cada pieza o bulto, conservar instrucciones y verificar qué se entrega a cada cliente.
 
-**estado:** demo interactiva y backend laravel 13 con acceso por negocio, sucursal y rol, más registro y búsqueda de clientes y catálogo de servicios. todavía no recibe órdenes; los datos de las capturas son de prueba.
+**estado:** demo interactiva y backend laravel 13 con acceso por negocio, sucursal y rol, registro y búsqueda de clientes, catálogo de servicios, ventas, abonos e historial con recibos imprimibles. todavía no recibe órdenes; los datos de las capturas son de prueba.
 
 [ver la demo y el avance del backend](https://kisnner26.github.io/trama-lavanderia/) · [alcance inicial](docs/producto.md) · [flujo operativo](docs/operacion.md) · [modelo de datos](docs/datos.md) · [arquitectura](docs/arquitectura.md) · [plan](docs/plan.md)
 
@@ -54,6 +54,12 @@ la cuenta inicial se crea con `trama:provision`. cada empleado necesita una asig
 
 ![captura real del registro de clientes del backend](docs/img/backend-customers.png)
 
-el tarifario permite cobro por pieza o kilogramo y configurar si el servicio incluye acabado. solo el propietario añade servicios; recepción puede consultarlos. los precios se guardan como centavos enteros en la moneda del negocio (nio o usd). la recepción de órdenes y los cobros todavía están pendientes.
+el tarifario permite cobro por pieza o kilogramo y configurar si el servicio incluye acabado. solo el propietario añade servicios; recepción puede consultarlos. los precios se guardan como centavos enteros en la moneda del negocio (nio o usd). las ventas toman una copia de los precios, cliente y negocio al emitirse. puedes registrar abonos en efectivo, transferencia o tarjeta, consultar saldo e historial y reimprimir un comprobante comercial en a4/carta o con ancho de 80 mm. los pagos se registran manualmente; no hay procesador de tarjetas ni factura fiscal. la recepción y seguimiento de prendas todavía están pendientes.
+
+![venta con abono e historial](docs/img/backend-sale.png)
+
+![recibo comercial del cliente](docs/img/backend-receipt.png)
+
+las capturas contienen datos de prueba. impresión revisada en navegador/pdf; falta probar una impresora térmica real.
 
 [captura del tarifario](docs/img/backend-services.png) · [captura del backend en móvil](docs/img/backend-mobile.png). el backend se ejecuta localmente; github pages muestra la demo y capturas del avance.
