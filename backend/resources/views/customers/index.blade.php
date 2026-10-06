@@ -8,6 +8,7 @@
 <div class="split-desk">
     <section aria-labelledby="customers-title">
         <h2 class="panel-title" id="customers-title">cada nombre, una ficha.</h2>
+        <a class="mobile-create" href="#new-customer-title">nueva ficha →</a>
         <form method="get" action="{{ route('customers.index', ['branch' => $membership->branch_id]) }}" class="search-form">
             <div class="field"><label for="q">buscar por nombre o teléfono</label><input id="q" name="q" value="{{ $search }}" maxlength="80" type="search" @error('q') aria-invalid="true" aria-describedby="q-error" @enderror>@error('q')<p id="q-error" class="field-error" role="alert">{{ $message }}</p>@enderror</div>
             <button type="submit" class="button secondary">buscar</button>

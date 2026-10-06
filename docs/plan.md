@@ -50,7 +50,7 @@ cada hito termina con una función revisable y sus pruebas relevantes. los commi
 
 ## entregado en este repositorio
 
-documentación del producto, demo interactiva, reglas simples del ejemplo y pruebas de entrega parcial. el sitio y sus capturas sirven para discutir el piloto. la base laravel, mysql, negocios, sucursales, roles y acceso por sesión ya están implementados; las asignaciones se comprueban en cada petición. el alta inicial se hace mediante un comando local, sin contraseña predeterminada. falta administración visual del equipo y recuperación de acceso. los hitos de órdenes, operación, pagos y entrega siguen pendientes.
+documentación del producto, demo interactiva, reglas simples del ejemplo y pruebas de entrega parcial. el sitio y sus capturas sirven para discutir el piloto. la base laravel, mysql, negocios, sucursales, roles y acceso por sesión ya están implementados; las asignaciones se comprueban en cada petición. el alta inicial se hace mediante un comando local, sin contraseña predeterminada. falta administración visual del equipo y recuperación de acceso. también están implementados el registro y búsqueda paginada de clientes, y el tarifario por negocio con precios enteros, cobro por pieza/peso y ruta con o sin acabado. solo propietario y recepción consultan estos datos; solo el propietario configura servicios. los hitos de órdenes, operación, pagos y entrega siguen pendientes.
 
 ## preguntas abiertas
 

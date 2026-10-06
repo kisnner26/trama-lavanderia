@@ -916,3 +916,17 @@ button:disabled {
 .record-row strong { overflow-wrap: anywhere; }
 .text-button, .branch-nav a { min-height: 44px; }
 .desk-tabs a { padding-top: 13px; padding-bottom: 13px; }
+
+.service-price { text-align: right; flex-shrink: 0; }
+.service-price .price-tag { font-family: var(--mono); font-weight: 500; }
+.service-price .record-number { display: block; margin-top: 6px; }
+.setup-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
+
+.mobile-create { display: none; }
+@media (max-width: 1050px) {
+    .mobile-create { display: inline-flex; align-items: center; min-height: 44px; font: 12px/1.5 var(--mono); margin-bottom: 18px; }
+}
+@media (max-width: 700px) {
+    .desk-heading { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .outline-stamp { justify-self: start; }
+}

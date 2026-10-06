@@ -22,7 +22,8 @@
             <div class="desk-heading"><div><p class="eyebrow">@yield('desk-kicker', 'recepción / '.$membership->branch->name)</p><h1>@yield('desk-title', 'el mostrador.')</h1></div><span class="outline-stamp">@yield('desk-stamp', 'base del negocio')</span></div>
             <nav class="desk-tabs" aria-label="secciones">
                 <a href="{{ route('workspace', ['branch' => $membership->branch_id]) }}" @if (request()->routeIs('workspace')) aria-current="page" @endif>inicio</a>
-                @can('receive', $membership)<a href="{{ route('customers.index', ['branch' => $membership->branch_id]) }}" @if (request()->routeIs('customers.*')) aria-current="page" @endif>clientes</a>@endcan
+                @can('receive', $membership)<a href="{{ route('customers.index', ['branch' => $membership->branch_id]) }}" @if (request()->routeIs('customers.*')) aria-current="page" @endif>clientes</a>
+                <a href="{{ route('services.index', ['branch' => $membership->branch_id]) }}" @if (request()->routeIs('services.*')) aria-current="page" @endif>servicios</a>@endcan
             </nav>
             @yield('desk-content')
             <footer class="desk-footer"><span>trama / {{ $membership->branch->business->currency }}</span><span>{{ $membership->branch->business->timezone }}</span></footer>

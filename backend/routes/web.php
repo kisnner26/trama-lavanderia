@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Middleware\EnsureBranchAccess;
@@ -14,6 +15,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [WorkspaceController::class, 'home'])->name('home');
     Route::post('/salir', [SessionController::class, 'destroy'])->name('logout');
     Route::middleware(EnsureBranchAccess::class)->prefix('/sucursales/{branch}')->whereNumber('branch')->group(function () {
+        Route::get('/servicios', [ServiceController::class, 'index'])->name('services.index');
+        Route::post('/servicios', [ServiceController::class, 'store'])->name('services.store');
         Route::get('/clientes', [CustomerController::class, 'index'])->name('customers.index');
         Route::post('/clientes', [CustomerController::class, 'store'])->name('customers.store');
     });

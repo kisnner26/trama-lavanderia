@@ -2,7 +2,7 @@
 
 propuesta de un sistema para lavanderías: identificar cada pieza o bulto, conservar instrucciones y verificar qué se entrega a cada cliente.
 
-**estado:** demo interactiva y backend laravel 13 con acceso por negocio, sucursal y rol, más registro y búsqueda de clientes. todavía no recibe órdenes; los datos de las capturas son de prueba.
+**estado:** demo interactiva y backend laravel 13 con acceso por negocio, sucursal y rol, más registro y búsqueda de clientes y catálogo de servicios. todavía no recibe órdenes; los datos de las capturas son de prueba.
 
 [ver la demo](https://kisnner26.github.io/trama-lavanderia/) · [alcance inicial](docs/producto.md) · [flujo operativo](docs/operacion.md) · [modelo de datos](docs/datos.md) · [arquitectura](docs/arquitectura.md) · [plan](docs/plan.md)
 
@@ -53,3 +53,5 @@ la cuenta inicial se crea con `trama:provision`. cada empleado necesita una asig
 ![captura real del acceso al backend](docs/img/backend-access.png)
 
 ![captura real del registro de clientes del backend](docs/img/backend-customers.png)
+
+el tarifario permite cobro por pieza o kilogramo y configurar si el servicio incluye acabado. solo el propietario añade servicios; recepción puede consultarlos. los precios se guardan como centavos enteros en la moneda del negocio (nio o usd). la recepción de órdenes y los cobros todavía están pendientes.
