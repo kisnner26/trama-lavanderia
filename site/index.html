@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="trama: propuesta de un sistema para lavanderías, con seguimiento por prenda, instrucciones y entregas parciales.">
+  <meta name="theme-color" content="#191b1a">
+  <title>trama — cada prenda, una historia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#contenido">ir al contenido</a>
+  <header class="masthead">
+    <a class="brand" href="./">trama<span class="brand-mark" aria-hidden="true">/</span></a>
+    <span class="edition">sistema para lavanderías / propuesta 0.1</span>
+    <a class="source" href="https://github.com/kisnner26/trama-lavanderia">repositorio</a>
+  </header>
+  <main id="contenido">
+    <section class="intro" aria-labelledby="titulo">
+      <div>
+        <p class="eyebrow">del mostrador a la entrega</p>
+        <h1 id="titulo">cada prenda.<br><span>una historia.</span></h1>
+        <p class="lead">identificar, cuidar y devolver. una operación clara para lavanderías que todavía dependen de papeles y mensajes.</p>
+        <p class="notice">demo de la propuesta. datos ficticios; sin clientes reales, pagos ni almacenamiento.</p>
+      </div>
+      <div class="illustration" aria-hidden="true">
+        <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+          <path d="M132 50 73 84 23 172 83 207 117 148 106 289 294 289 283 148 317 207 377 172 327 84 268 50 238 64Q200 108 162 64Z" fill="#e7e0d3" stroke="#191b1a" stroke-width="3"/>
+          <path d="M162 64Q200 136 238 64M200 110V289M117 148 132 50M283 148 268 50" fill="none" stroke="#b8afa0" stroke-width="2"/>
+          <path d="M231 151H274V182H231Z" fill="none" stroke="#b8afa0" stroke-width="2"/>
+          <path d="M260 77 314 93 291 174 237 158Z" fill="#e5a777"/>
+          <circle cx="278" cy="94" r="4" fill="#191b1a"/>
+          <path d="M278 94 268 50" stroke="#191b1a" stroke-width="2"/>
+          <text x="245" y="131" fill="#191b1a" font-family="monospace" font-size="12" transform="rotate(16 245 131)">tr-024</text>
+          <text x="243" y="148" fill="#191b1a" font-family="monospace" font-size="8" transform="rotate(16 243 148)">pieza 01</text>
+        </svg>
+        <span class="stamp">identidad propia.<br>en cada etapa.</span>
+      </div>
+    </section>
+
+    <section class="workspace" aria-labelledby="demo-heading">
+      <div class="section-heading"><h2 id="demo-heading">una orden, dos recorridos</h2><span class="eyebrow">prueba el flujo</span></div>
+      <div class="order-bar"><span>orden <strong>tr-024</strong></span><span id="order-status">recibida</span><span class="private">cliente de ejemplo</span></div>
+      <div class="work-grid">
+        <div class="piece-list" aria-label="prendas de la orden">
+          <button type="button" data-piece="0" aria-pressed="true"><span class="piece-number">01</span><span>camisa de lino<small>lavado + acabado</small></span><span class="piece-state">recibida</span></button>
+          <button type="button" data-piece="1" aria-pressed="false"><span class="piece-number">02</span><span>pantalón de algodón<small>lavado + acabado</small></span><span class="piece-state">recibida</span></button>
+          <p class="hint">cada pieza conserva su estado. entregar una no cierra la orden.</p>
+        </div>
+        <div class="piece-detail">
+          <div class="detail-heading"><h3 id="piece-title">camisa de lino</h3><span class="tag" id="piece-id">tr-024 / 01</span></div>
+          <p class="instruction" id="piece-instruction">instrucción registrada: revisar la etiqueta y confirmar el tratamiento antes de lavar.</p>
+          <ol class="stages" id="stages" aria-label="etapas de la prenda"></ol>
+          <div class="actions"><button id="advance" class="primary" type="button">avanzar prenda</button><button id="reset" class="secondary" type="button">reiniciar ejemplo</button></div>
+          <p class="feedback" id="feedback" role="status" aria-live="polite">selecciona una prenda y recorre sus etapas.</p>
+        </div>
+      </div>
+      <noscript><p>activa javascript para probar el flujo. la documentación del sistema está disponible en el repositorio.</p></noscript>
+    </section>
+
+    <section class="scope" aria-labelledby="scope-heading">
+      <h2 id="scope-heading">lo que vamos a construir</h2>
+      <div class="scope-grid">
+        <article><span class="eyebrow">01 / recepción</span><h3>recibir con evidencia</h3><p>piezas o bultos identificados, observaciones, servicio solicitado y fecha prometida.</p></article>
+        <article><span class="eyebrow">02 / operación</span><h3>seguir cada unidad</h3><p>etiquetas, estados e incidencias. un historial para saber qué cambió y quién lo registró.</p></article>
+        <article><span class="eyebrow">03 / entrega</span><h3>devolver lo correcto</h3><p>verificar identificadores, registrar entregas parciales y consultar saldos por separado.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer><span>trama / un proyecto de kisnner26</span><a href="https://github.com/kisnner26/trama-lavanderia/tree/main/docs">alcance, arquitectura y plan</a></footer>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
